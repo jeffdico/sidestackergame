@@ -1,0 +1,14 @@
+click==8.1.2
+Flask==2.1.1
+Flask-Cors==3.0.10
+greenlet==1.1.2
+importlib-metadata==4.11.3
+itsdangerous==2.1.2
+Jinja2==3.1.1
+MarkupSafe==2.1.1
+six==1.16.0
+SQLAlchemy==1.4.35
+typing_extensions==4.1.1
+Werkzeug==2.1.1
+WTForms==3.0.1
+zipp==3.8.0

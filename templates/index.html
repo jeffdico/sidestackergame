@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+{% macro load_form(form) %}		
+
+	{% for field, ele in form._fields.items() %}
+		<div class="form-group mb-3">
+			{% if ele.type == 'BooleanField' %}
+				{{ ele() }} 
+				{{ ele.label() }}
+			{% else %}
+ 				{% if ele.type == 'HiddenField' %}
+					{{ ele }}
+ 				{% else %}
+					{{ ele.label() }}
+					{{ ele() }}				
+				{% endif %}
+			{% endif %}
+			
+			{% if ele.errors %}				
+				{% for err in ele.errors %}
+			 		<i class="text-danger"> {{ err }}  </i>
+				{% endfor %}
+			{%endif %}
+			
+			{% if ele.render_kw['footer'] == True %}
+				<i class="text-muted"> {{ ele.render_kw['placeholder'] }} </i>
+			{% endif %}
+			
+
+		</div>		
+	{% endfor %}
+
+{% endmacro %}
+
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Side Stacker</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	
+</head>
+<body>	
+
+
+	<div class="container">
+		<div class="row">
+			{% block body %}
+			<div class="col-md-6 offset-md-3">
+				
+				<div class="d-flex flex-column justify-content-center align center" style="min-height: 650px;">
+
+					<p class="alert alert-warning text-center">
+						Side stacker game built for humans. <br/> 
+						To start, select player symbols
+					</p>
+
+					<form action="/" method="post">
+						<div class="mb-4">
+						<br/> <br/><br/>
+						
+						{{load_form(form)}}
+
+						<br/> <br/>
+						<div class="d-grid">							
+							<button type="submit" class="btn btn-lg btn-success"> Start Game </button>
+						</div>
+
+					</form>
+ 
+				</div>
+			</div>
+
+			{% endblock %}
+
+		</div>
+		
+	</div>
+
+	
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+ -->
+
+{% block script %}
+{% endblock %}
+
+</body>
+</html>

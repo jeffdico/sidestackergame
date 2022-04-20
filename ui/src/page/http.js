@@ -1,7 +1,7 @@
 
 
-const BASE = "";
-// const BASE = "http://127.0.0.1:5000";
+// const BASE = "";
+const BASE = "http://127.0.0.1:5000";
 
 
 export const POST = async (

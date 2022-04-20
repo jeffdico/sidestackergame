@@ -11,7 +11,7 @@ from forms import PlayerForm
 from model import GameSession, GameInfo
 
 # not required for prod version 
-# from flask_cors import CORS # for dev purposes 
+from flask_cors import CORS # for dev purposes 
 
 from helpers import (
     vertical_moves,
@@ -26,7 +26,7 @@ from helpers import (
 # app setup 
 
 app = Flask(__name__, template_folder="ui/build/", static_folder='ui/build/static')
-# CORS(app) 
+CORS(app) 
 
 
 # +-------------------------+-------------------------+

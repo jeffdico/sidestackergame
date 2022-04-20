@@ -65,7 +65,6 @@ def right_cross(game, player, row, colno):
     found = 0 
      
     for cl in range(colno, -1, -1):
-
         
         if game[counter][cl] == player:
             found += 1 
@@ -96,7 +95,6 @@ def diagonal_right_cross(game, player):
 
         if match >= 4:
             break 
-
         
         
         start_col -= 1 

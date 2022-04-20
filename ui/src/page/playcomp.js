@@ -42,7 +42,8 @@ export default class PlayComp extends React.Component {
 
 				play_disable: false,
 				data : {},
-				gameover: false 
+				gameover: false
+				 
  
 			}
 
@@ -65,6 +66,7 @@ export default class PlayComp extends React.Component {
 		this.change_func = this.change_func.bind(this);
 		this.submit_data = this.submit_data.bind(this);
 
+		this.check_validity = this.check_validity.bind(this)
 		 
 
 	}
@@ -315,7 +317,6 @@ export default class PlayComp extends React.Component {
 			alert("position specified is already taken!!!")
 			return 
 		}
-
  		
  		this.select_row_func(tmp[0], tmp[1])
 
@@ -387,16 +388,41 @@ export default class PlayComp extends React.Component {
 
 		const cells = this.state.moves;
 		
-		cells[row][col] = this.state.current_player;
+		// check for rows played before accepting it.
+		if (this.check_validity(row, col) === true){
 
-		this.setState({
-				moves: cells,
-				loading: true 
-			},
-			this.publish_move
-		)
+			cells[row][col] = this.state.current_player;
+
+			this.setState({
+					moves: cells,
+					loading: true 
+				},
+				this.publish_move
+			)
+
+		}
+
+		
+
 
 	}
+
+	check_validity(row, col){
+
+		const {moves} = this.state; 
+		const board = moves[row]; 
+			
+		if ( (board[0] === 0 && board[6] === 0)){			
+			if (col > 0 && col < 6){
+				alert("invalid move")
+				return false
+			}
+		}
+
+		return true 
+
+	}
+	
 
 	publish_move(){
 
